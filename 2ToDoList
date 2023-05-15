@@ -1,0 +1,43 @@
+class Todo {
+  constructor(id, title, completed) {
+    this.id = id;
+    this.title = title;
+    this.completed = completed;
+  }
+}
+
+class TodoList {
+  constructor() {
+    this.todos = [];
+  }
+
+  addTodo(title) {
+    const todo = new Todo(
+      this.todos.length + 1,
+      title,
+      false
+    );
+    this.todos.push(todo);
+  }
+
+  completeTodoById(id) {
+    const todo = this.todos.find(todo => todo.id === id);
+    if (todo) {
+      todo.completed = true;
+    }
+  }
+
+  displayTodos() {
+    console.log("Todo List:");
+    this.todos.forEach(todo => {
+      console.log(`ID: ${todo.id} - ${todo.title}`);
+      console.log(`Completed: ${todo.completed}`);
+    });
+  }
+}
+
+const todoList = new TodoList();
+todoList.addTodo("Learn JavaScript");
+todoList.addTodo("Build a personal website");
+todoList.completeTodoById(1);
+todoList.displayTodos();
